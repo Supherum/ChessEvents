@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap');
+/* PRIMEROS PASOS Y UTILIDADES */
+body *{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    
+}
+body{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    min-width: 100vw;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    overflow-x: hidden;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+a:hover{
+    color: inherit;
+}
+
+.row-padding {
+    padding: 0;
+}
+.row-margin{
+    margin: 0;
+}
+.debug{
+    border:2px solid red;
+}
+.tipo_letra{
+    font-family:'Tenor Sans';
+}
+.font_bold{
+    font-weight: bolder;
+}
+.caja_registro div{
+    width: 50%;
+    text-align: center;
+    height: 40px;
+    color: white;
+    padding-top: 3px;
+}
+.caja_registro div:first-child{
+    border-bottom-left-radius: 10px;
+}
+.caja_registro{
+    border-bottom: 1px white solid;
+    border-left: 1px solid white;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-bottom-left-radius: 10px;
+}
+.caja_registro div:hover{
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.body_fondo2{
+    background-image: url(../img/3.jpg);
+}
+
+.text-purple{
+    color: purple;
+}
+.font-32{
+    font-size: 32pt;
+}
+.font-32 a{
+    margin-left: 25px;
+    margin-left: 55px;
+    margin-bottom: 100px;
+}
+.display_none{
+    display: none;
+}
+/* HEADER */
+@media (min-width: 600px){
+    header{
+        margin-bottom: 250px;
+    }
+}
+.boton_menu{
+    width: 100px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid white;
+}
+.banner_con_margin{
+    border-bottom: 1px white solid;
+    border-top: 1px white solid;
+}
+.logo{
+    height: 150px;
+    margin-top: 5%;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.logoD{
+    background-image: url(../img/logo1.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    height: 100%;
+}
+.titulo{
+    font-size: 24pt;
+    margin:  auto;
+    text-transform: uppercase;
+}
+.menu{
+    height: 60px;
+}
+.pad25{
+    width: 700px;
+    margin: auto;
+}
+.bgcolor{
+    background-color: rgba(0, 0, 0, 0.3);
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    margin-top: 2px;
+}
+nav ul li{
+    font-size: 12pt;
+    padding-top: 2%;
+    width: 100%;
+    text-align: center;
+   
+}
+.menu li:first-child{
+    border-bottom-left-radius: 10px;
+}
+.menu li:last-child{
+    border-bottom-right-radius: 10px;
+}
+.menu li:hover{
+    background-color: rgba(0, 0, 0, 0.6);
+    font-size: 12pt;
+}
+nav ul{
+   width: 100%;
+   justify-content: space-between;
+}
+nav ul li:hover ul{
+    display: block;
+}
+
+.submenu{
+    display: none;
+}
+.submenu_estetica{
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+    margin-top:22.5px;
+    height: 200px;
+    width: 168.5px;
+}
+
+.submenu_estetica li{
+    height: 33.333%;
+    padding-top: 12%;
+}
+.submenu_estetica li:last-child{
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.submenu_estetica li:first-child{
+    border-radius: 0;
+}
+.white_border:hover{
+    border-bottom: white solid 2px;
+}
+
+/*MAIN*/
+.main_margin{
+    margin-top: 250px;
+    
+}
+.columna_principal{
+    height: 1000px;
+    background-color: white;
+   
+}
+.columna_secundaria{
+    height: 1000px;
+    background-color: white;
+    
+}
+.proximos_torneos{
+    height: 400px;
+    width: 100%;
+}
+.proximos_torneos_titulo{
+    width: 100%;
+    height: 100px;
+    text-align: center;
+    font-size: 27pt;
+    padding-top: 17px;
+}
+.ultimo_socio_agregado{
+    height: 725px;
+    width: 100%;
+    padding: 15px;
+}
+.ultimo_socio_agregado_foto{
+    height: 275px;
+    width: 200px;
+}
+.ultimo_socio_agregado_datos{
+    height: 50%;
+
+}
+.ultimo_socio_agregado_nombre{
+    font-size: 15pt;
+}
+/* FOOTER */
+footer{
+    height: 250px;
+    padding-left: 0;
+    padding-right: 0;
+    margin-top: 100px;
+
+}
+/* TABLAS */
+.esconder_tabla{
+    overflow-y: scroll;
+}
+
+.w-73{
+    width: 100% !important;
+}
+@media (max-width: 1500px){
+    .w-73{
+        width: 73% !important;
+    }
+}
+@media (max-width: 600px){
+    .w-73{
+        width: 100% !important;
+    }
+    .columna_no_importante{
+        display: none;
+    }
+}
+
+
+
