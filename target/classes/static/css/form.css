@@ -1,0 +1,147 @@
+main div form{
+    height: 400px;
+    width: 100%;
+}
+
+#socio_submit{
+   
+    padding: 15px;
+    background-color: royalblue;
+    color: white;
+    border: 0; 
+    opacity: 0.9;
+}
+#socio_submit:hover{
+    opacity: 1;
+}
+.boton_mio{
+    background-color: royalblue;
+    color: white;
+    border: 0; 
+    opacity: 0.9;
+    
+}
+.boton_mio:hover{
+    opacity: 1;
+}
+
+.caja_formulario{
+    border-radius: 15px;
+}
+.border_radio_15{
+    border-radius: 15px;
+}
+
+.contactanos_caja{
+    margin-left: 10%;
+    border-top: 1px white solid;    
+    font-size: 14pt;
+    padding-top: 15px;
+}
+
+.titulo_footer{
+   
+    font-size: 19pt;
+    padding-top: 20px;
+    padding-left: 30%;
+    
+}
+input, select{
+    border-radius: 8px;
+    padding: 10px 10px ;
+    box-sizing: content-box;
+    
+}
+fieldset{
+    padding-left: 50px;
+}
+.w-82{
+    width: 82% !important;
+}
+/*
+.boton_borrado{
+ box-sizing: content-box;
+ padding: 5px;
+ border-radius: 5px;
+ width: 60px;
+ text-align: center;
+ color: white;
+ font-size: 13pt;
+ background-color: #dc3545;
+}
+.boton_borrado:hover{
+    color: white;
+    background-color: rgb(177, 65, 46);
+}
+*/
+
+.formularioTorneoIndex{
+    width: 68%;
+    height: 100%;
+    border: rgb(49, 49, 49) solid 2px;
+}
+.formularioSocioIndex{
+    width: 32%;
+    height: 100%;
+    border: rgb(49, 49, 49) solid 2px;
+}
+
+.caja_buscar{
+    height: 15%;
+    width: 100%;
+    background-color: rgb(49, 49, 49);
+    border: 1px solid transparent;
+}
+.buscar{
+    margin-left: 15px;
+}
+#buscar{
+    border: white 1px solid;
+}
+.lupa{
+    font-size: 16pt;
+    margin-left: 10px;
+}
+.tabla_torneo_index{
+    height: 85%;
+    width: 100%;
+}
+
+
+
+@media (min-width: 600px){
+    .caja_formulario{
+    width: 900px;
+    min-height: 900px;
+    background-color: white;
+    }
+    .body_fondo1{
+        background-image: url(../img/1.jpg);         
+     }
+     .caja_main{
+        width: 85vw;
+        min-height: 1000px;
+        background-color: white;
+    }
+   
+
+     
+
+}
+@media (max-width: 600px){
+    #datos_rating{
+        margin-top: 60px;
+    }
+    .body_fondo1{
+        background-color: rgba(54, 114, 167, 0.6);         
+     }
+    .ultima{
+        padding-bottom: 60px;
+    }
+    #socio_submit{
+        margin-left: 0;
+    }
+    .formularioTorneoIndex{
+        width: 100%;
+    }
+}

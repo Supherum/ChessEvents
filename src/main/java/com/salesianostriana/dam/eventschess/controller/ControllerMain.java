@@ -35,5 +35,6 @@ public class ControllerMain {
 		model.addAttribute("socioApuntar",new Socio());
 		return "index";
 	}
+
 	
 }

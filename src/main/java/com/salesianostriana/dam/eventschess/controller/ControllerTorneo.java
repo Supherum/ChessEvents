@@ -1,5 +1,8 @@
 package com.salesianostriana.dam.eventschess.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.salesianostriana.dam.eventschess.pojo.Torneo;
 import com.salesianostriana.dam.eventschess.servicio.TorneoServicio;
@@ -44,5 +48,25 @@ public class ControllerTorneo {
 		torneoServicio.delete(torneoServicio.findById(id));
 		return "redirect:/";
 	}
+	
+	
+	@GetMapping ("/torneo/")
+	public String buscarTorneoPorNombre (Model model, 
+			@RequestParam("q") Optional<String> busqueda){
+		
+		List<Torneo> torneos;
+		
+		if (busqueda.isEmpty()) {
+			torneos= torneoServicio.findAll();
+		} else {
+			torneos = torneoServicio.buscarTorneoPorNombre(busqueda.get());
+		}
+
+		model.addAttribute("torneos", torneos);	
+		return "index";
+		
+	}
+		
+	
 
 }

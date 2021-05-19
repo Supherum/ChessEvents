@@ -13,4 +13,5 @@ public interface SocioRepository extends JpaRepository<Socio,Long>{
 
 	/*@Query ("Select s from Socio s where s.fecha_nacimiento>socio_fecha")
 	 public List <Socio> filtrarPorEdad (@Param ("socio_fecha") LocalDate date);*/
+
 }
