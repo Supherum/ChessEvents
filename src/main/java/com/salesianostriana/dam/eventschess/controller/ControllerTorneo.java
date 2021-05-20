@@ -22,6 +22,7 @@ public class ControllerTorneo {
 	@Autowired
 	private TorneoServicio torneoServicio;
 		
+	
 	@GetMapping("/agregar_torneo")
 	public String showTorneo (Model model) {
 		model.addAttribute("torneoForm",new Torneo());
@@ -50,23 +51,7 @@ public class ControllerTorneo {
 	}
 	
 	
-	@GetMapping ("/torneo/")
-	public String buscarTorneoPorNombre (Model model, 
-			@RequestParam("q") Optional<String> busqueda){
-		
-		List<Torneo> torneos;
-		
-		if (busqueda.isEmpty()) {
-			torneos= torneoServicio.findAll();
-		} else {
-			torneos = torneoServicio.buscarTorneoPorNombre(busqueda.get());
-		}
-
-		model.addAttribute("torneos", torneos);	
-		return "index";
-		
-	}
-		
+	
 	
 
 }

@@ -74,14 +74,24 @@ fieldset{
     background-color: rgb(177, 65, 46);
 }
 */
+.h-60{
+    height: 60%;
+}
+.h-20{
+    height: 20%;
+}
+.h-15{
+    height: 15%;
+}
+.h-85{
+    height: 85%;
+}
+.h-80{
+    height: 80%;
+}
 
 .formularioTorneoIndex{
-    width: 68%;
-    height: 100%;
-    border: rgb(49, 49, 49) solid 2px;
-}
-.formularioSocioIndex{
-    width: 32%;
+    width: 100%;
     height: 100%;
     border: rgb(49, 49, 49) solid 2px;
 }
@@ -123,8 +133,15 @@ fieldset{
         min-height: 1000px;
         background-color: white;
     }
-   
-
+    .caja_registro_persona{
+        height: 100%;
+        width: 50%;
+    }
+    .caja_registro_torneo{
+        height: 100%;
+        width: 50%;
+    }
+    
      
 
 }
@@ -143,5 +160,16 @@ fieldset{
     }
     .formularioTorneoIndex{
         width: 100%;
+    }
+    .caja_registro_persona{
+        height: 50%;
+        width: 100%;
+    }
+    .caja_registro_torneo{
+        height: 50%;
+        width: 100%;
+    }
+    .boton_registro{
+        margin-top: 30px;
     }
 }

@@ -15,9 +15,7 @@ import com.salesianostriana.dam.eventschess.servicio.SocioServicio;
 public class ControllerSocio {
 
 	@Autowired
-	 private SocioServicio socioServicio;
-
-	
+	 private SocioServicio socioServicio;	
 	
 	@GetMapping("/agregar_socio")
 	public String showSocio (Model model)

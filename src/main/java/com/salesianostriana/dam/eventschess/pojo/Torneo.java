@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -45,7 +47,10 @@ public class Torneo
 	private LocalDate fecha_comienzo;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fecha_fin;
-	private TipoPartida tipo_partida;
+	
+	@Enumerated
+	private TipoPartida tipoPartida;
+	
 	private int participantes_maximos;
 	private int participantes_actuales;
 	private int rating_minimo;
@@ -58,7 +63,7 @@ public class Torneo
 		this.lugar = lugar;
 		this.fecha_comienzo = fecha_comienzo;
 		this.fecha_fin = fecha_fin;
-		this.tipo_partida = tipo_partida;
+		this.tipoPartida = tipo_partida;
 		this.participantes_maximos = participantes_maximos;
 		this.participantes_actuales = participantes_actuales;
 	}
@@ -70,11 +75,20 @@ public class Torneo
 		this.lugar = lugar;
 		this.fecha_comienzo = fecha_comienzo;
 		this.fecha_fin = fecha_fin;
-		this.tipo_partida = tipo_partida;
+		this.tipoPartida = tipo_partida;
 		this.participantes_maximos = participantes_maximos;
 		this.rating_minimo = rating_minimo;
 		this.texto_aclarativo = texto_aclarativo;
 	}
+
+	public void addSocio(Socio s) {
+		this.socios.add(s);
+	}
+	
+	public void deleteSocio(Socio s) {
+		this.socios.remove(s);
+	}
+	
 	
 	
 	

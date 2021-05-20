@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,6 +16,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 import org.springframework.format.annotation.DateTimeFormat;
+
+
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -52,6 +56,8 @@ public class Socio
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fecha_nacimiento;
 	private String foto;
+	
+	@Enumerated 
 	private Gender genero;
 	
 	/* Rating scores */
@@ -59,6 +65,19 @@ public class Socio
 	private int rating_rapid;
 	private int rating_blitz;
 	
+	
+	
+	 public void addDelete (Torneo t) {
+		 this.torneos.remove(t);
+		t.deleteSocio(this);
+		t.setParticipantes_actuales(t.getParticipantes_actuales()-1);
+	 }
+	
+	 public void addTorneo (Torneo t) {
+		this.torneos.add(t);
+		t.addSocio(this);
+		t.setParticipantes_actuales(t.getParticipantes_actuales()+1);
+	 }
 	
 	
 	public Socio(String usuario, String password, String nombre, String apellido, String nacionalidad,

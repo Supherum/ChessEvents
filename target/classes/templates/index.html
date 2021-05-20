@@ -23,9 +23,9 @@
     <!-- Clase y estilos propios-->
     <link href="../static/css/style.css" rel="stylesheet" th:href="@{/css/style.css}">
     <link href="../static/css/form.css" rel="stylesheet" th:href="@{/css/form.css}"> 
-    <script src="../static/script/navbar.js" th:src="@{/script/formulario.js}" defer ></script>
     <script src="../static/script/formulario.js" th:src="@{/script/navbar.js}" defer></script>
-
+    <script src="../static/script/magia.js" th:src="@{/script/magia.js}" defer></script>
+<script src="../static/script/navbar.js" th:src="@{/script/formulario.js}" defer></script>
     <title> Chess </title>
 </head>
 
@@ -77,7 +77,9 @@
                     <div class="columna_principal  col-xxl-6 col-12  row-padding ">
                         <div class="w-100  p-3 h-50">
                             <div class="w-100 h-100 esconder_tabla">
+                            
                                 <!-- TABLA DE TORNEOS NORMAL-->
+                                
                                 <table class="table table-striped">
                                     <caption class="caption-top  text-center tipo_letra font-32 text-dark">TORNEOS</caption>
                                     <thead class="table-dark">
@@ -92,13 +94,13 @@
                                             <th scope="col" class="text-center">Delete</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr th:each=" torneo: ${lista_torneo}">
-                                            <td th:text="${torneo.id}">21</td>
-                                            <td th:text="${torneo.nombre}">Ramón y cajal</td>
-                                            <td class="columna_no_importante" th:text="${torneo.lugar}">Sevilla</td>
+                                    <tbody id="tbody_torneo">
+                                        <tr th:each=" torneo: ${lista_torneo}"   th:attr="data-rating_minimo=${torneo.rating_minimo},data-id=${torneo.id},data-nombre=${torneo.nombre},data-lugar=${torneo.lugar},data-tipo_partida=${torneo.tipoPartida},data-texto=${torneo.texto_aclarativo}">
+                                            <td th:text="${torneo.id}" >21</td>
+                                            <td th:text="${torneo.nombre}" >Ramón y cajal</td>
+                                            <td class="columna_no_importante" th:text="${torneo.lugar}" >Sevilla</td>
                                             <td th:text="${torneo.fecha_comienzo}">15/05/2021</td>
-                                            <td class="columna_no_importante" th:text="${torneo.tipo_partida}">Standard</td>
+                                            <td class="columna_no_importante" th:text="${torneo.tipoPartida}"  >Standard</td>
                                             <td class="columna_no_importante text-center" th:text="${torneo.participantes_actuales +'/'+ torneo.participantes_maximos}">123/200</td>
                                             <td class="text-center"  ><a th:href="@{/mostrar_torneo/{id}(id=${torneo.id})}" ><i class="bi bi-pencil-square" ></i></a></td>
                                             <td class="text-center" ><a th:href="@{/borrar_torneo/{id}(id=${torneo.id})}"  > <i class="bi bi-trash"></i></a></td>
@@ -111,59 +113,55 @@
                         <div class="h-50 w-100 ">
                             <div class="w-100  p-3 h-100">
                                 <div class="w-100 h-100   d-flex ">
+
                                     <!-- Formulario Lupa y torneos  -->
+
                                     <div class="formularioTorneoIndex ">
-                                        <div class="caja_buscar">
-                                            <form class="buscar mt-3">
-                                                <input id="buscar "type="text" name="q" th:value="${param.q}" placeholder="Buscar..." onchange="window.location.href='http://localhost:9000/?q=' + this.value" />
+                                        <div class="caja_buscar debug h-15">
+                                            <form class="buscar mt-3 d-flex h-50" th:action="@{/torneo/}">
+                                                <input id="buscar" type="text" name="q" th:value="${param.q}" placeholder="Buscar..." />
                                                 <i class="bi bi-search text-white lupa"></i>
+                                                <div class="w-75 d-md-block d-none">
+                                                    <div class="filtro d-flex w-50 justify-content-between mx-auto">
+                                                        <a href="#" th:href="@{/torneo/standard}" class="text-white"> Standard</a>
+                                                        <a href="#" th:href="@{/torneo/rapid}" class="text-white"> Rapid</a>
+                                                        <a href="#" th:href="@{/torneo/blitz}" class="text-white"> Blitz</a>
+                                                    </div>  
+                                                </div>
+                                                                                              
                                             </form>
                                         </div>
+                                        
                                         <!-- Acaba lupa empieza torneo-->
+                                        
                                         <div class="w-100 tabla_torneo_index">
                                             <table class="table table-striped esconder_tabla w-100">
                                                 <thead class="table-primary">
                                                     <tr>
                                                         <th class="columna_no_importante"> #</th>
                                                         <th> Nombre</th>
-                                                        <th class="columna_no_importante"> Ubicación</th>
+                                                        <th class=""> Ubicación</th>
                                                         <th> Tipo</th>
                                                         <th class="columna_no_importante"> Requerido</th>
                                                         <th > Participantes</th>
-                                                        <th> Inscribirse</th>
+                                                       <th class="columna_no_importante"> Fecha Inicio</th>
+                                                       <th class="columna_no_importante">Fecha Fin</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-                                                    <tr th:each=" torneo: ${lista_torneo}">
+                                                <tbody id="tbody_torneo2">
+                                                    <tr th:each=" torneo: ${torneos_busqueda}" th:attr="data-rating_minimo=${torneo.rating_minimo},data-id=${torneo.id},data-nombre=${torneo.nombre},data-lugar=${torneo.lugar},data-tipo_partida=${torneo.tipoPartida},data-texto=${torneo.texto_aclarativo}">
                                                         <td class="columna_no_importante" th:text="${torneo.id}">21</td>
                                                         <td th:text="${torneo.nombre}">Córsola</td>
-                                                        <td class="columna_no_importante" th:text="${torneo.lugar}">Atlantis</td>
-                                                        <td th:text="${torneo.tipo_partida}">Standard</td>
-                                                        <td class="text-center columna_no_importante" th:text="${torneo.rating_minimo}">1500</td>
-                                                        <td class="text-center" th:text="${torneo.participantes_actuales +'/'+ torneo.participantes_maximos}">127/200</td>
-                                                        <td class="text-center"><i class="bi bi-plus-circle"></i></td> 
+                                                        <td class="" th:text="${torneo.lugar}">Atlantis</td>
+                                                        <td th:text="${torneo.tipoPartida}">Standard</td>
+                                                        <td class="columna_no_importante" th:text="${torneo.rating_minimo}">1500</td>
+                                                        <td class="" th:text="${torneo.participantes_actuales +'/'+ torneo.participantes_maximos}">127/200</td>
+                                                        <td class="columna_no_importante">2021-21-01</td>
+                                                        <td class="columna_no_importante">2021-21-01</td>                                                         
                                                     </tr>                                                    
                                                 </tbody>
                                             </table>
                                         </div>
-                                    </div>
-                                    <!-- Formulario Socio -->
-                                    <div class="formularioSocioIndex d-none d-md-block">
-                                        <form class="w-100 h-100"  method="POST" th:action="@{/guardar_socio}" th:object="${socioApuntar}">
-                                            <div class="text-center mt-2">
-                                                <img src="https://www.istockphoto.com/resources/images/PhotoFTLP/Signature-1205756464.jpg" width="200" height="200"
-                                                th:src="*{foto}">
-                                            </div>
-                                            <div class="text-center mt-3">
-                                                <label for="rating_socio_standard_index" >Standard</label><br>
-                                                <input  th:field="*{rating_standard}"  type="number" id="rating_socio_standard_index" class="mx-auto form-control w-75"><br>
-                                                <label for="rating_socio_rapid_index">Rapid</label><br>
-                                                <input th:field="*{rating_rapid}"  type="number" class="form-control w-75 mx-auto" id="rating_socio_rapid_index"><br>
-                                                <label for="rating_socio_blitz_index">Blitz</label><br>
-                                                <input th:field="*{rating_blitz}"  type="number" class="form-control w-75 mx-auto" id="rating_socio_blitz_index">
-                                                <input type="hidden" name="id_socio_index" id="id_socio_index" >
-                                            </div>    
-                                        </form>
                                     </div>
                                 </div>  
                             </div>
@@ -174,7 +172,9 @@
                         <div class="h-50 w-100 ">
                             <div class="w-100  p-3 h-100">
                                 <div class="w-100 h-100 esconder_tabla">
+
                                     <!-- TABLA DE SOCIOS NORMAL-->
+
                                     <table class="table table-striped">
                                         <caption class="caption-top  text-center tipo_letra font-32 text-dark">SOCIOS</caption>
                                         <thead class="table-dark">
@@ -189,8 +189,8 @@
                                                 <th scope="col" class="text-center">Add</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr th:each=" socio: ${lista_socio}">
+                                        <tbody id="tbody_socio">
+                                            <tr th:each=" socio: ${lista_socio}" th:attr="data-nombre=${socio.nombre},data-id=${socio.id},data-apellido=${socio.apellido},data-standard=${socio.rating_standard},data-blitz=${socio.rating_blitz},data-rapid=${socio.rating_rapid},data-imagen=${socio.foto}">
                                                 <td th:text="${socio.nombre}">JuanCarlos</td>
                                                 <td th:text="${socio.apellido}">Ruiz</td>
                                                 <td th:text="${socio.fecha_nacimiento}">19</td>
@@ -206,43 +206,79 @@
                                 </div>  
                             </div>
                         </div>
-                        <div class="h-50 w-100  container-fluid">
-                            <div class="row h-100">
-                                <div class="mx-auto w-73  col-12 my-auto">
-                                    <div id="carouselExampleIndicators" class="carousel slide  mx-auto  col-12" data-bs-ride="carousel">
-                                        <div class="carousel-indicators">
-                                            <button type="button" data-bs-target="#carouselExampleIndicators"
-                                                data-bs-slide-to="0" class="active" aria-current="true"
-                                                aria-label="Slide 1"></button>
-                                            <button type="button" data-bs-target="#carouselExampleIndicators"
-                                                data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                            <button type="button" data-bs-target="#carouselExampleIndicators"
-                                                data-bs-slide-to="2" aria-label="Slide 3"></button>
-                                        </div>
-                                        <div class="carousel-inner">
-                                            <div class="carousel-item active">
-                                                <img src="../img/1.jpg" class="d-block w-100" alt="...">
-                                            </div>
-                                            <div class="carousel-item">
-                                                <img src="../img/2.jpg" class="d-block w-100" alt="...">
-                                            </div>
-                                            <div class="carousel-item">
-                                                <img src="../img/3.jpg" class="d-block w-100" alt="...">
-                                            </div>
-                                        </div>
-                                        <button class="carousel-control-prev" type="button"
-                                            data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            <span class="visually-hidden">Previous</span>
-                                        </button>
-                                        <button class="carousel-control-next" type="button"
-                                            data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                            <span class="visually-hidden">Next</span>
-                                        </button>
+                        <div class="h-50 w-100  container-fluid col-12">
+                            <div class="h-15 ">
+                                <h1 class=" text-center">REGISTRO</h1>
+                            </div>
+                            <div class="col-12 w-100 d-md-flex h-85  d-block">
+
+                                <!-- Persona que se inscribe-->
+
+                                <div class="col-6 caja_registro_persona">
+                                    <div class="text-center d-md-block d-none">
+                                        <img src="http://www.meritschool.com/wp-content/uploads/2020/02/describir-foto-ingles.jpg"  width="200px" height="200px" id="imagen_socio_registro">
                                     </div>
+                                    <div>
+                                        <form class="mt-3">
+                                            <div >
+                                                <input type="text" placeholder="Nombre" class="form-control w-50 mx-auto" id="nombre_socio_registro">
+                                                <input type="text" placeholder="Apellido" class="form-control w-50 mx-auto mt-2" id="apellido_socio_registro">
+                                            </div>
+                                            <div class="d-flex justify-content-between pt-3">
+                                                <input type="number" placeholder="Standard" class="w-25 form-control" id="standard_socio_registro">
+                                                <input type="number" placeholder="Blitz" class="w-25 form-control" id="blitz_socio_registro">
+                                                <input type="number" placeholder="Rapid" class="w-25 form-control" id="rapid_socio_registro">
+                                            </div>
+                    
+                                        </form>
+                                    </div> 
                                 </div>
-                            </div>          
+                                <div class="col-6  caja_registro_torneo">
+
+                                    <!--Torneo que se inscribe-->
+
+                                <div class="w-100 h-100 ">
+                                    <form class="w-100 h-80 ">
+                                        <div class="w-100 h-50 d-flex">
+                                            <div class="w-50 h-100 d-flex">
+                                                <div class="my-auto">
+                                                    <input placeholder="Nombre" type="text" class="w-75 form-control mx-auto" id="nombre_torneo_registro"><br>
+                                                    <input placeholder="Ubicación" type="text" class="w-75 form-control mx-auto" id="lugar_torneo_registro">
+                                                </div>
+                                            </div>
+                                            <div class="w-50 h-100">
+                                                <div class="h-100 d-flex ">
+                                                    <div class="my-auto ">
+                                                        <input type="text" class="w-75 form-control mx-auto" placeholder="Tipo Partida" id="tipo_partida_torneo_registro"><br>
+                                                        <input type="number" class=" w-75 form-control mx-auto" placeholder="1680" id="rating_minimo_torneo_registro">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="w-100 h-50 d-flex d-md-block d-none">
+                                            <div class="my-auto mx-auto">
+                                                <textarea cols="30" rows="4" class=" form-control" id="texto_aclarativo_torneo_registro"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="w-100 h-20">
+                                            <div class="col-12 w-100 h-100 d-flex boton_registro">
+                                                <div class="my-auto mx-auto ">
+                                                   
+                                                </div>                                                 
+                                            </div>
+                                        </div>
+                                            
+                                    </form>
+                                    <form method="POST" th:action="@{/agregar-asociacion/{id1}/{id2} (id1=${idObject.socio_id},id2=${idObject.torneo_id})}" th:object="${idObject}" >
+                                        <input th:value="${idObject.socio_id}" type="hidden" id="id_socio_registro">
+                                        <input th:value="${idObject.torneo_id}" type="hidden" id="id_torneo_registro">
+                                        <input class="btn btn-primary" value="Registrar" type="submit">
+                                    </form>
+                                </div>  
+                                </div>  
+                            </div>
+                            
+                                        
                         </div>
                     </div>
                 </div>

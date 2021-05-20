@@ -15,8 +15,8 @@
     <!-- Clase y estilos propios-->
     <link href="../static/css/style.css" rel="stylesheet" th:href="@{/css/style.css}">
     <link href="../static/css/form.css" rel="stylesheet" th:href="@{/css/form.css}">
-    <script src="../static/script/navbar.js" th:src="@{/script/formulario.js}" defer></script>
     <script src="../static/script/formulario.js" th:src="@{/script/navbar.js}" defer></script>
+    <script src="../static/script/navbar.js" th:src="@{/script/formulario.js}" defer></script>
     <title> Formulario Torneo</title>
 </head>
 
@@ -72,8 +72,8 @@
                             <input name="nombre" id="nombre_torneo" type="text" class="form-control w-75"  th:field="*{nombre}"><br>
                             <label for="ubicacion_torneo">Ubicación</label><br>
                             <input name="ubicacion" id="ubicacion_torneo" type="text" class="form-control w-75"  th:field="*{lugar}"><br>
-                            <label for="tipo_partida_torneo">Tipo de partidas</label><br>               
-                            <select id="tipo_partida_torneo" name="tipo_partida"  class="form-control w-75" th:field="*{tipo_partida}">
+                            <label for="tipoPartida_torneo">Tipo de partidas</label><br>               
+                            <select id="tipoPartida_torneo" name="tipoPartida"  class="form-control w-75" th:field="*{tipoPartida}">
                                 <option th:value="standard">Standard</option>
                                 <option th:value="blitz">Blitz</option>
                                 <option th:value="rapid">Rapid</option>
