@@ -24,7 +24,13 @@ import lombok.ToString;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
+/**
+ * Clase que se encarga de modelar como es un Torneo en esta aplicación, también contiene algunos métodos
+ * para facilitar el funcionamiento. Tiene una asociación muchos a muchos con Socios y es el lado NO propietario
+ * @author Pablo Repiso Sasiain
+ * @since 15/05/2021
+ * @version 1.0V
+ */
 public class Torneo
 {	
 	/* Primary key */
@@ -55,30 +61,6 @@ public class Torneo
 	private int rating_minimo;
 	private String texto_aclarativo;
 	
-	
-	public Torneo(String nombre, String lugar, LocalDate fecha_comienzo, LocalDate fecha_fin, TipoPartida tipo_partida,
-			int participantes_maximos, int participantes_actuales) {
-		this.nombre = nombre;
-		this.lugar = lugar;
-		this.fecha_comienzo = fecha_comienzo;
-		this.fecha_fin = fecha_fin;
-		this.tipoPartida = tipo_partida;
-		this.participantes_maximos = participantes_maximos;
-		this.participantes_actuales = participantes_actuales;
-	}
-
-
-	public Torneo(String nombre, String lugar, LocalDate fecha_comienzo, LocalDate fecha_fin, TipoPartida tipo_partida,
-			int participantes_maximos, int rating_minimo, String texto_aclarativo) {
-		this.nombre = nombre;
-		this.lugar = lugar;
-		this.fecha_comienzo = fecha_comienzo;
-		this.fecha_fin = fecha_fin;
-		this.tipoPartida = tipo_partida;
-		this.participantes_maximos = participantes_maximos;
-		this.rating_minimo = rating_minimo;
-		this.texto_aclarativo = texto_aclarativo;
-	}
 
 	public void addSocio(Socio s) {
 		this.socios.add(s);
@@ -87,8 +69,7 @@ public class Torneo
 	public void deleteSocio(Socio s) {
 		this.socios.remove(s);
 	}
-	
-	
+
 	
 	
 }

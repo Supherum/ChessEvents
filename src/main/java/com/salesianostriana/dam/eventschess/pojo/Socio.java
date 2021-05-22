@@ -26,7 +26,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Entity
-
+/**
+ * Clase que modela el cómo es un Socio en nuestra aplicación y que características tiene, es la parte
+ * Propietaria de la asociación muchos a muchos de torneos y contiene algunos métodos que nos ayudan
+ * con la lógica de negocios. Más o menos.
+ * @author Pablo Repiso Sasiain
+ * @version 1.1V
+ * @since 15/05/2021
+ */
 public class Socio
 {
 	/* Primary key */
@@ -65,14 +72,13 @@ public class Socio
 	 public Socio removeTorneo (Torneo t) {
 		this.torneos.remove(t);
 		t.deleteSocio(this);
-		t.setParticipantes_actuales(t.getParticipantes_actuales()-1);
+		
 		return this;
 	 }
 	
 	 public Socio addTorneo (Torneo t) {
 		this.torneos.add(t);
 		t.addSocio(this);
-		t.setParticipantes_actuales(t.getParticipantes_actuales()+1);
 		return this;
 	 }
 	 

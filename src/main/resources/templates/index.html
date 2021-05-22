@@ -19,13 +19,13 @@
         integrity="sha384-lpyLfhYuitXl2zRZ5Bn2fqnhNAKOAaM/0Kr9laMspuaMiZfGmfwRNFh8HlMy49eQ" crossorigin="anonymous"
         defer></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-
+   
+	
     <!-- Clase y estilos propios-->
     <link href="../static/css/style.css" rel="stylesheet" th:href="@{/css/style.css}">
     <link href="../static/css/form.css" rel="stylesheet" th:href="@{/css/form.css}"> 
-    <script src="../static/script/formulario.js" th:src="@{/script/navbar.js}" defer></script>
+    <script src="../static/script/navbar.js" th:src="@{/script/navbar.js}" defer></script>
     <script src="../static/script/magia.js" th:src="@{/script/magia.js}" defer></script>
-<script src="../static/script/navbar.js" th:src="@{/script/formulario.js}" defer></script>
     <title> Chess </title>
 </head>
 
@@ -102,11 +102,12 @@
                                             <td class="columna_no_importante" th:text="${torneo.lugar}" >Sevilla</td>
                                             <td th:text="${torneo.fecha_comienzo}" class="columna_no_importante">15/05/2021</td>
                                             <td class="columna_no_importante" th:text="${torneo.tipoPartida}"  >Standard</td>
-                                            <td class="columna_no_importante text-center" th:text="${torneo.participantes_actuales +'/'+ torneo.participantes_maximos}">123/200</td>
+                                            <td class="columna_no_importante text-center"  th:text="${#lists.size(torneo.socios) +'/'+ torneo.participantes_maximos}">123/200</td>
                                             <td class="text-center"  ><a th:href="@{/mostrar_torneo/{id}(id=${torneo.id})}" ><i class="bi bi-pencil-square" ></i></a></td>
                                             <td class="text-center" ><a th:href="@{/borrar_torneo/{id}(id=${torneo.id})}"  > <i class="bi bi-trash"></i></a></td>
                                             <td class="text-center" ><a th:href="@{/torneo/vista/{id}(id=${torneo.id})}" ><i class="bi bi-trophy"></i> </a></td>
                                         </tr>
+                                       
                                               <!-- data-bs-toggle="modal" data-bs-target="#modal_torneo" implementar-->                
                                     </tbody>
                                 </table>
@@ -145,7 +146,7 @@
                                                         <th class=""> Ubicación</th>
                                                         <th> Tipo</th>
                                                         <th class="columna_no_importante"> Requerido</th>
-                                                        <th > Participantes</th>
+                                                        <th class="text-center"> Participantes</th>
                                                        <th class="columna_no_importante"> Fecha Inicio</th>
                                                        <th class="columna_no_importante">Fecha Fin</th>
                                                     </tr>
@@ -157,7 +158,7 @@
                                                         <td class="" th:text="${torneo.lugar}">Atlantis</td>
                                                         <td th:text="${torneo.tipoPartida}">Standard</td>
                                                         <td class="columna_no_importante" th:text="${torneo.rating_minimo}">1500</td>
-                                                        <td class="" th:text="${torneo.participantes_actuales +'/'+ torneo.participantes_maximos}">127/200</td>
+                                                        <td class="text-center"  th:text="${#lists.size(torneo.socios) +'/'+ torneo.participantes_maximos}">127/200</td>
                                                         <td class="columna_no_importante">2021-21-01</td>
                                                         <td class="columna_no_importante">2021-21-01</td>                                                         
                                                     </tr>                                                    
