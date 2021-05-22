@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -45,10 +44,6 @@ public class Socio
 	private List<Torneo> torneos = new ArrayList<>();
 	
 	
-	/* Security */
-	private String usuario;
-	private String password;
-	
 	/* Private information */
 	private String nombre;
 	private String apellido;
@@ -67,23 +62,37 @@ public class Socio
 	
 	
 	
-	 public void addDelete (Torneo t) {
-		 this.torneos.remove(t);
+	 public Socio removeTorneo (Torneo t) {
+		this.torneos.remove(t);
 		t.deleteSocio(this);
 		t.setParticipantes_actuales(t.getParticipantes_actuales()-1);
+		return this;
 	 }
 	
-	 public void addTorneo (Torneo t) {
+	 public Socio addTorneo (Torneo t) {
 		this.torneos.add(t);
 		t.addSocio(this);
 		t.setParticipantes_actuales(t.getParticipantes_actuales()+1);
+		return this;
 	 }
+	 
+	 public int ratingByType (TipoPartida tipo) {
+		 
+		 switch (tipo) {
+		 case standard:
+			return this.rating_standard;
+		 case blitz:
+			 return this.rating_blitz;
+		 case rapid:
+			 return this.rating_rapid;
+		default:
+			return 0;
+		}
 	
+	 }
 	
 	public Socio(String usuario, String password, String nombre, String apellido, String nacionalidad,
 			LocalDate fecha_nacimiento, Gender genero, int rating_standard, int rating_rapid, int rating_blitz) {
-		this.usuario = usuario;
-		this.password = password;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.nacionalidad = nacionalidad;

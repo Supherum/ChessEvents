@@ -15,11 +15,9 @@
     <!-- Clase y estilos propios-->
     <link href="../static/css/style.css" rel="stylesheet" th:href="@{/css/style.css}">
     <link href="../static/css/form.css" rel="stylesheet" th:href="@{/css/form.css}">
-    <script src="../static/script/navbar.js" th:src="@{/script/formulario.js}" defer></script>
     <script src="../static/script/formulario.js" th:src="@{/script/navbar.js}" defer></script>
-    
-
-    <title> Formulario Socio </title>
+    <script src="../static/script/navbar.js" th:src="@{/script/formulario.js}" defer></script>
+    <title> Formulario Torneo</title>
 </head>
 
 <body class="body_fondo1">
@@ -66,63 +64,42 @@
         </header>
         <main>
             <div class="caja_formulario mx-auto my-auto">
-                <form name="registro_socio col-12" class="h-100"  method="POST" th:action="@{/guardar_socio}" th:object="${socioForm}" >
-                    <div class="col-12 d-md-flex h-75">
-                    <fieldset class="col-12 col-md-6 tipo_letra pt-5 h-100"><div class="titulo ">DATOS PERSONALES</div><br>
-                        <div>
-                        	<img th:src="*{foto}" src="https://www.hemomadrid.com/wp-content/uploads/2015/11/foto-generica.jpg" with="200" height="200"><br><br>
-                            <label for="nombre_socio">Nombre</label><br>
-                            <input required name="nombre" id="nombre_socio" type="text" class="form-control w-75" th:field="*{nombre}"><br>
-                            <label for="apellido_socio">Apellido</label><br>
-                            <input required name="apellido" id="apellido_socio" type="text" class="form-control w-75" th:field="*{apellido}"><br>
-                            <label for="nacionalidad_socio">Nacionalidad</label><br>               
-                            <select id="nacionalidad_socio" name="nacionalidad"  class="form-control w-75" th:field="*{nacionalidad}">
-                                <option th:value="sueco">Sueco</option>
-                                <option th:value="español">Español</option>
-                                <option th:value="frances">Frances</option>
-                            </select><br>
-                            <label for="fecha_naciemiento_socio">Fecha de Nacimiento</label><br>
-                            <input required name="fecha_nacimiento" id="fecha_nacimiento_socio" type="date" class="form-control w-75" th:field="*{fecha_nacimiento}"><br>
-                            <label for="genero_socio">Genero</label><br>
-                            <select id="genero_socio" name="tipos" class="form-control w-75" th:field="*{genero}">
-                                 <option th:each="tipos : ${T(com.salesianostriana.dam.eventschess.pojo.Gender).values()}" th:value="${tipos}" th:text="${tipos}"></option> 
-                            </select><br>
-                            <label for="foto_socio">Fotografía</label><br>
-                            <input type="text" name="foto" placeholder="www.https::/enlacedetufoto" id="foto_socio" class="form-control w-75" th:field="*{foto}"><br>
+               <div class="col-12 ">
+                    <div class=" titulo_torneo d-flex">
+                        <div class="my-auto mx-auto  titulo_torneo_format tipo_letra" th:text="${torneoMuestra.nombre}">
+                            titulo 2
                         </div>
-                    </fieldset>
-                    <fieldset class="col-md-6 col-12 tipo_letra h-100" id="datos_rating"><div class="titulo pt-5">DATOS RATING</div><br>
-                        <div id="numero_rating_2">
-                            <label for="tipo_raiting_socio_2">Tipo Raiting</label><br>
-                            <input disabled type="text" value="standard"> 
-                            <br>                           
-                            <label for="numero_raiting_socio_2">Puntuación</label><br>
-                            <input name="numero_raiting_2" type="number" id="numero_raiting_socio_2" placeholder="1600" class="form-control w-75" th:field="*{rating_standard}"><br>
-                        </div>
-                        <div id="numero_rating_0" class="display_none">
-                            <label for="tipo_raiting_socio_0">Tipo Raiting</label><br>
-                            <input disabled type="text" value="rapid"><br><label for="numero_raiting_socio_0">Puntuación</label><br>
-                            <input name="numero_raiting_0" type="number" id="numero_raiting_socio_0" placeholder="1600" class="form-control w-75" th:field="*{rating_rapid}"><br>
-                        </div>
-                        <div id="numero_rating_1" class="display_none">
-                            <label for="tipo_raiting_socio_1">Tipo Raiting</label><br>
-                            <input disabled type="text" value="blitz"><br><label for="numero_raiting_socio_1">Puntuación</label><br>
-                            <input name="numero_raiting_1" type="number" id="numero_raiting_socio_1" placeholder="1600" class="form-control w-75" th:field="*{rating_blitz}"><br>
-                        </div>
-                        <input type="button" id="addRating" value="Añadir" class="boton_mio shadow">
-                        <input type="button" id="removeRating" value="Borrar" class="boton_mio shadow"><br>
-                        <input type="hidden" th:field="*{id}">
-                    </fieldset>
-                    
-                </div>
-                    <div class="w-100"> 
-                        <div class="  text-center">
-                            <input class="shadow  mt-2" id="socio_submit" type="submit" value="Registrarse" >
-                        </div>
-                        
                     </div>
-                   
-               </form>
+                    <div class="container">
+                        <div class=" tabla_ver esconder_tabla">
+                            <table class="table table-striped ">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col" >Apellido</th>
+                                        <th scope="col" class="">Edad</th>
+                                        <th scope="col" class="columna_no_importante">Nacionalidad</th>
+                                        <th scope="col" class="text-center columna_no_importante">Género</th>
+                                        <th scope="col" class="text-center columna_no_importante">Edit</th>
+                                        <th scope="col" class="text-center ">Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody_socio">
+                                    <tr th:each=" socio: ${torneoMuestra.socios}" >
+                                        <td th:text="${socio.nombre}">JuanCarlos</td>
+                                        <td th:text="${socio.apellido}">Ruiz</td>
+                                        <td th:text="${socio.fecha_nacimiento}">19</td>
+                                        <td class="columna_no_importante" th:text="${socio.nacionalidad}">Holanda</td>
+                                        <td class="text-center columna_no_importante" th:text="${socio.genero}">M</td>
+                                        <td class="text-center columna_no_importante" ><a th:href="@{/mostrar_socio/{id}(id=${socio.id})}"><i class="bi bi-pencil-square"></i></a></td>
+                                        <td class="text-center " ><a th:href="@{/borrar/{id1}/{id2}(id1=${socio.id},id2=${torneoMuestra.id})}"><i class="bi bi-trash"></i></a></td>
+                                    </tr>
+                                           <!--  data-bs-toggle="modal" data-bs-target="#modal_socio" implementar-->               
+                                </tbody>
+                            </table>
+                        </div>                        
+                    </div>
+               </div>
             </div>
         </main>
         <footer class="d-md-flex d-block  border-top border-1 border-white">

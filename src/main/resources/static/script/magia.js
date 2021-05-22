@@ -14,7 +14,7 @@ window.onload = function() {
     elements2.forEach(element2 => {
         element2.addEventListener("click",sacarAtributosTorneo1)
     });
-    const formAgre=document.getElementById('agregarAsociacion');
+   
 }
 
 

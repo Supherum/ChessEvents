@@ -87,11 +87,12 @@
                                             <th scope="col">#</th>
                                             <th scope="col">Nombre</th>
                                             <th scope="col" class="columna_no_importante">Ubicación</th>
-                                            <th scope="col">Comienzo</th>
+                                            <th scope="col" class="columna_no_importante">Comienzo</th>
                                             <th scope="col" class="columna_no_importante">Tipo</th>
                                             <th scope="col" class="columna_no_importante text-center">Participantes</th>
                                             <th scope="col" class="text-center">Edit</th>
                                             <th scope="col" class="text-center">Delete</th>
+                                            <th scope="col" class="text-center">See</th>
                                         </tr>
                                     </thead>
                                     <tbody id="tbody_torneo">
@@ -99,11 +100,12 @@
                                             <td th:text="${torneo.id}" >21</td>
                                             <td th:text="${torneo.nombre}" >Ramón y cajal</td>
                                             <td class="columna_no_importante" th:text="${torneo.lugar}" >Sevilla</td>
-                                            <td th:text="${torneo.fecha_comienzo}">15/05/2021</td>
+                                            <td th:text="${torneo.fecha_comienzo}" class="columna_no_importante">15/05/2021</td>
                                             <td class="columna_no_importante" th:text="${torneo.tipoPartida}"  >Standard</td>
                                             <td class="columna_no_importante text-center" th:text="${torneo.participantes_actuales +'/'+ torneo.participantes_maximos}">123/200</td>
                                             <td class="text-center"  ><a th:href="@{/mostrar_torneo/{id}(id=${torneo.id})}" ><i class="bi bi-pencil-square" ></i></a></td>
                                             <td class="text-center" ><a th:href="@{/borrar_torneo/{id}(id=${torneo.id})}"  > <i class="bi bi-trash"></i></a></td>
+                                            <td class="text-center" ><a th:href="@{/torneo/vista/{id}(id=${torneo.id})}" ><i class="bi bi-trophy"></i> </a></td>
                                         </tr>
                                               <!-- data-bs-toggle="modal" data-bs-target="#modal_torneo" implementar-->                
                                     </tbody>
@@ -114,7 +116,7 @@
                             <div class="w-100  p-3 h-100">
                                 <div class="w-100 h-100   d-flex ">
 
-                                    <!-- Formulario Lupa y torneos  -->
+                                    <!-- Formulario Lupa, filtros  y torneos  -->
 
                                     <div class="formularioTorneoIndex ">
                                         <div class="caja_buscar debug h-15">
@@ -132,7 +134,7 @@
                                             </form>
                                         </div>
                                         
-                                        <!-- Acaba lupa empieza torneo-->
+                                        <!-- Acaba lupa y filtros y empieza torneo-->
                                         
                                         <div class="w-100 tabla_torneo_index">
                                             <table class="table table-striped esconder_tabla w-100">
@@ -185,8 +187,7 @@
                                                 <th scope="col" class="columna_no_importante">Nacionalidad</th>
                                                 <th scope="col" class="text-center columna_no_importante">Género</th>
                                                 <th scope="col" class="text-center">Edit</th>
-                                                <th scope="col" class="text-center">Delete</th>
-                                                <th scope="col" class="text-center">Add</th>
+                                                <th scope="col" class="text-center">Delete</th>                    
                                             </tr>
                                         </thead>
                                         <tbody id="tbody_socio">
@@ -197,8 +198,7 @@
                                                 <td class="columna_no_importante" th:text="${socio.nacionalidad}">Holanda</td>
                                                 <td class="text-center columna_no_importante" th:text="${socio.genero}">M</td>
                                                 <td class="text-center" ><a th:href="@{/mostrar_socio/{id}(id=${socio.id})}"><i class="bi bi-pencil-square"></i></a></td>
-                                                <td class="text-center" ><a th:href="@{/borrar_socio/{id}(id=${socio.id})}"><i class="bi bi-trash"></i></a></td>
-                                                <td class="text-center" ><a th:href="@{/apuntar/{id}(id=${socio.id})}" ><i class="bi bi-trophy"></i> </a></td>
+                                                <td class="text-center" ><a th:href="@{/borrar_socio/{id}(id=${socio.id})}"><i class="bi bi-trash"></i></a></td>   
                                             </tr>
                                                    <!--  data-bs-toggle="modal" data-bs-target="#modal_socio" implementar-->               
                                         </tbody>
@@ -269,9 +269,9 @@
                                         </div>
                                             
                                     </form>
-                                    <form method="POST" th:action="@{/agregar-asociacion/{id1}/{id2} (id1=${idObject.socio_id},id2=${idObject.torneo_id})}" th:object="${idObject}" id="agregarAsociacion" >
-                                        <input th:value="${idObject.socio_id}" type="hidden" id="id_socio_registro">
-                                        <input th:value="${idObject.torneo_id}" type="hidden" id="id_torneo_registro">
+                                    <form method="POST" th:action="@{/agregar-asociacion/}" th:object="${idObject}" id="agregarAsociacion" >
+                                        <input  th:field="*{socio_id}" type="hidden" id="id_socio_registro">
+                                        <input  th:field="*{torneo_id}" type="hidden" id="id_torneo_registro">
                                         <input class="btn btn-primary" value="Registrar" type="submit">
                                     </form>
                                 </div>  

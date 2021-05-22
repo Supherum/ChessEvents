@@ -178,6 +178,22 @@ nav ul li:hover ul{
     border-bottom: white solid 2px;
 }
 
+/* VISTA TORNEO */
+
+ .tabla_ver{ 
+     width: 100%;
+     height: 600px;
+     margin-top: 10%;
+ }
+.titulo_torneo{
+    height: 150px;
+    width: 100%;
+}
+.titulo_torneo_format{
+    font-size: 30pt;
+}
+
+
 /*MAIN*/
 .main_margin{
     margin-top: 250px;

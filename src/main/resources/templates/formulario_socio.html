@@ -72,9 +72,9 @@
                         <div>
                         	<img th:src="*{foto}" src="https://www.hemomadrid.com/wp-content/uploads/2015/11/foto-generica.jpg" with="200" height="200"><br><br>
                             <label for="nombre_socio">Nombre</label><br>
-                            <input name="nombre" id="nombre_socio" type="text" class="form-control w-75" th:field="*{nombre}"><br>
+                            <input required name="nombre" id="nombre_socio" type="text" class="form-control w-75" th:field="*{nombre}"><br>
                             <label for="apellido_socio">Apellido</label><br>
-                            <input name="apellido" id="apellido_socio" type="text" class="form-control w-75" th:field="*{apellido}"><br>
+                            <input required name="apellido" id="apellido_socio" type="text" class="form-control w-75" th:field="*{apellido}"><br>
                             <label for="nacionalidad_socio">Nacionalidad</label><br>               
                             <select id="nacionalidad_socio" name="nacionalidad"  class="form-control w-75" th:field="*{nacionalidad}">
                                 <option th:value="sueco">Sueco</option>
@@ -82,13 +82,10 @@
                                 <option th:value="frances">Frances</option>
                             </select><br>
                             <label for="fecha_naciemiento_socio">Fecha de Nacimiento</label><br>
-                            <input name="fecha_nacimiento" id="fecha_nacimiento_socio" type="date" class="form-control w-75" th:field="*{fecha_nacimiento}"><br>
+                            <input required name="fecha_nacimiento" id="fecha_nacimiento_socio" type="date" class="form-control w-75" th:field="*{fecha_nacimiento}"><br>
                             <label for="genero_socio">Genero</label><br>
-                            <select id="genero_socio" class="form-control w-75" th:field="*{genero}">
-                                <option th:value="male">---</option>
-                                <option th:value="male">Masculino</option>
-                                <option th:value="female">Femenino</option>
-                                <option th:value="male">HelicópteroApache</option>
+                            <select id="genero_socio" name="tipos" class="form-control w-75" th:field="*{genero}">
+                                 <option th:each="tipos : ${T(com.salesianostriana.dam.eventschess.pojo.Gender).values()}" th:value="${tipos}" th:text="${tipos}"></option> 
                             </select><br>
                             <label for="foto_socio">Fotografía</label><br>
                             <input type="text" name="foto" placeholder="www.https::/enlacedetufoto" id="foto_socio" class="form-control w-75" th:field="*{foto}"><br>

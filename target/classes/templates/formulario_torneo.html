@@ -69,14 +69,12 @@
                     <fieldset class="col-12 col-md-6 tipo_letra pt-5 h-100"><div class="titulo ">DATOS DEL TORNEO</div><br>
                         <div>
                             <label for="nombre_torneo">Nombre</label><br>
-                            <input name="nombre" id="nombre_torneo" type="text" class="form-control w-75"  th:field="*{nombre}"><br>
+                            <input required name="nombre" id="nombre_torneo" type="text" class="form-control w-75"  th:field="*{nombre}"><br>
                             <label for="ubicacion_torneo">Ubicación</label><br>
-                            <input name="ubicacion" id="ubicacion_torneo" type="text" class="form-control w-75"  th:field="*{lugar}"><br>
+                            <input required name="ubicacion" id="ubicacion_torneo" type="text" class="form-control w-75"  th:field="*{lugar}"><br>
                             <label for="tipoPartida_torneo">Tipo de partidas</label><br>               
-                            <select id="tipoPartida_torneo" name="tipoPartida"  class="form-control w-75" th:field="*{tipoPartida}">
-                                <option th:value="standard">Standard</option>
-                                <option th:value="blitz">Blitz</option>
-                                <option th:value="rapid">Rapid</option>
+                            <select id="tipoPartida_torneo" name="tipo"  class="form-control w-75" th:field="*{tipoPartida}">
+                                <option th:each="tipos : ${T(com.salesianostriana.dam.eventschess.pojo.TipoPartida).values()}" th:value="${tipos}" th:text="${tipos}"></option> 
                             </select><br>
                             <label for="fecha_comienzo_torneo" >Fecha de Comienzo</label><br>
                             <input name="fecha_comienzo" id="fecha_comienzo_torneo" type="date" class="form-control w-75" th:field="*{fecha_comienzo}"><br>
