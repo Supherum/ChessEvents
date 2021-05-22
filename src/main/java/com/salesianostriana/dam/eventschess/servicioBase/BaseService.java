@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * @author Pablo Repiso Sasiain (Ayuda insane de Luismiguel López)
  * @param <T> Es el Genérico de Tipo de objeto que creamos (Socio, Torneo,...)
  * @param <ID> Es el Genérico de clave primaria por el que guardará (Id de siempre)
- * @param <R>
+ * @param <R> Es el Genérico de repositorio de cada objeto
  */
 public abstract class BaseService<T, ID, R extends JpaRepository<T, ID>> implements IBaseService<T, ID> {
 

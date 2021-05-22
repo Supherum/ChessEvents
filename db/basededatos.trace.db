@@ -5210,3 +5210,6 @@ Cannot drop "SOCIO" because "FKJAG2EWQ44FF3RE378CNP753X4" depends on it; SQL sta
 org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "FOTO VARCHAR(255)": "'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBUWFRgWFhYZGBgYHB4cHBocHBwcGh8cIRwcHBoeHBwcIS4lHB4rIxoaJjgnKy8xNTU1... (14139)"
 Value too long for column "FOTO VARCHAR(255)": "'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBUWFRgWFhYZGBgYHB4cHBocHBwcGh8cIRwcHBoeHBwcIS4lHB4rIxoaJjgnKy8xNTU1... (14139)"; SQL statement:
 insert into socio (apellido, fecha_nacimiento, foto, genero, nacionalidad, nombre, rating_blitz, rating_rapid, rating_standard, id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) [22001-200]
+2021-05-23 01:16:25 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Conversión de datos fallida, convirtiendo "CoreaSur"
+Data conversion error converting "CoreaSur" [22018-200]

@@ -57,7 +57,6 @@ public class Torneo
 	private TipoPartida tipoPartida;
 	
 	private int participantes_maximos;
-	private int participantes_actuales;
 	private int rating_minimo;
 	private String texto_aclarativo;
 	
